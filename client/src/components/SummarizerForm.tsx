@@ -219,7 +219,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
             )}
 
             {/* Options and Settings */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               <FormField
                 control={form.control}
                 name="summaryLength"
@@ -242,31 +242,9 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                   </FormItem>
                 )}
               />
-
-              <FormField
-                control={form.control}
-                name="language"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Language</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select language" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="en">English</SelectItem>
-                        <SelectItem value="es">Spanish</SelectItem>
-                        <SelectItem value="fr">French</SelectItem>
-                        <SelectItem value="de">German</SelectItem>
-                        <SelectItem value="zh">Chinese</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              
+              {/* Hidden language field - always uses English */}
+              <input type="hidden" name="language" value="en" />
             </div>
 
             <div className="flex justify-center">
