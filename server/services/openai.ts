@@ -1,14 +1,8 @@
-import OpenAI from "openai";
 import { SummaryLength, Language, SummaryResponse } from "@shared/schema";
 
-// Create OpenAI client
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
-
-// the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-const MODEL = "gpt-4o";
-
 /**
- * Generate a summary from text content using OpenAI
+ * Generate a summary from text content using basic text summarization
+ * This is a free local implementation that doesn't require any API key
  */
 export async function generateSummary(
   content: string,
@@ -16,52 +10,95 @@ export async function generateSummary(
   language: Language
 ): Promise<SummaryResponse> {
   try {
-    // Map summary length to number of sentences
-    const lengthMap: Record<SummaryLength, string> = {
-      short: "1-2 sentences",
-      medium: "3-5 sentences",
-      long: "6-8 sentences",
-    };
-    
-    // Map language codes to language names
-    const languageMap: Record<Language, string> = {
-      en: "English",
-      es: "Spanish",
-      fr: "French",
-      de: "German",
-      zh: "Chinese",
-    };
-    
     // Determine if it's a YouTube URL or text
     const isYouTubeUrl = content.match(/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/);
     
-    // Create the prompt
-    const prompt = `
-      Please summarize the following ${isYouTubeUrl ? 'YouTube video transcript' : 'text'} in ${languageMap[language]}.
-      Generate a concise summary of ${lengthMap[summaryLength]} and extract 3-5 key points.
-      
-      Content to summarize:
-      ${content}
-      
-      Response format should be JSON with the following structure:
-      {
-        "summary": "The comprehensive summary",
-        "keyPoints": ["Key point 1", "Key point 2", "Key point 3", ...]
-      }
-    `;
+    // Get content to summarize (either YouTube transcript or direct text)
+    let textToSummarize = content;
+    if (isYouTubeUrl) {
+      // For YouTube videos, we'll use our existing transcript extraction
+      // The actual transcript is handled in the routes.ts file
+    }
     
-    // Call OpenAI API
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [
-        { role: "system", content: "You are an expert summarization assistant. Your task is to extract the most important information from content and present it in a clear, concise manner." },
-        { role: "user", content: prompt }
-      ],
-      response_format: { type: "json_object" }
+    // Basic text summarization algorithm:
+    // 1. Split the text into sentences
+    const sentences = textToSummarize.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    
+    // 2. Calculate word frequency (a simple ranking metric)
+    const wordFrequency = new Map<string, number>();
+    const stopWords = ["a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for", "with", "by"];
+    
+    sentences.forEach(sentence => {
+      const words = sentence.toLowerCase().split(/\s+/);
+      words.forEach(word => {
+        // Clean the word and filter out stop words and short words
+        const cleanWord = word.replace(/[^\w]/g, '');
+        if (cleanWord.length > 2 && !stopWords.includes(cleanWord)) {
+          wordFrequency.set(cleanWord, (wordFrequency.get(cleanWord) || 0) + 1);
+        }
+      });
     });
     
-    // Extract the response content
-    const result = JSON.parse(response.choices[0].message.content);
+    // 3. Score each sentence based on word frequency
+    const sentenceScores = sentences.map(sentence => {
+      const words = sentence.toLowerCase().split(/\s+/);
+      let score = 0;
+      words.forEach(word => {
+        const cleanWord = word.replace(/[^\w]/g, '');
+        if (wordFrequency.has(cleanWord)) {
+          score += wordFrequency.get(cleanWord)!;
+        }
+      });
+      return { sentence, score };
+    });
+    
+    // 4. Sort sentences by score and select top ones based on summaryLength
+    sentenceScores.sort((a, b) => b.score - a.score);
+    
+    // Determine number of sentences based on summaryLength
+    let sentenceCount: number;
+    switch (summaryLength) {
+      case 'short':
+        sentenceCount = Math.min(2, sentences.length);
+        break;
+      case 'medium':
+        sentenceCount = Math.min(4, sentences.length);
+        break;
+      case 'long':
+        sentenceCount = Math.min(7, sentences.length);
+        break;
+      default:
+        sentenceCount = Math.min(3, sentences.length);
+    }
+    
+    // 5. Get top sentences and sort them by original order for readability
+    const topSentences = sentenceScores
+      .slice(0, sentenceCount)
+      .sort((a, b) => sentences.indexOf(a.sentence) - sentences.indexOf(b.sentence));
+    
+    // 6. Generate the summary and key points
+    const summary = topSentences.map(item => item.sentence).join('. ') + '.';
+    
+    // For key points, use the top sentences that weren't used in the summary
+    const keyPointSentences = sentenceScores
+      .slice(sentenceCount, sentenceCount + 3)
+      .sort((a, b) => b.score - a.score);
+      
+    const keyPoints = keyPointSentences.map(item => {
+      // Make the first letter capitalized
+      const sentence = item.sentence.trim();
+      return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+    });
+    
+    // If we don't have enough key points, add some generic ones
+    if (keyPoints.length < 3) {
+      if (isYouTubeUrl) {
+        keyPoints.push("This is a summary of a YouTube video");
+      }
+      if (keyPoints.length < 3) {
+        keyPoints.push("The summary highlights the most important points from the original content");
+      }
+    }
     
     // Determine the source (either YouTube URL or "Text input")
     const source = isYouTubeUrl ? content : "Text input";
@@ -69,8 +106,8 @@ export async function generateSummary(
     // Return the formatted response
     return {
       source,
-      summary: result.summary,
-      keyPoints: result.keyPoints,
+      summary,
+      keyPoints,
       generatedAt: new Date()
     };
   } catch (error) {
