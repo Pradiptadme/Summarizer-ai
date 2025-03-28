@@ -15,18 +15,31 @@ export async function generateSummary(
     
     // Get content to summarize (either YouTube transcript or direct text)
     let textToSummarize = content;
-    if (isYouTubeUrl) {
-      // For YouTube videos, we'll use our existing transcript extraction
-      // The actual transcript is handled in the routes.ts file
-    }
+    
+    // Add more logging to help debug
+    console.log("Content type:", isYouTubeUrl ? "YouTube URL" : "Text input");
+    console.log("Content length:", content.length, "characters");
+    console.log("First 100 chars:", content.substring(0, 100));
     
     // Basic text summarization algorithm:
-    // 1. Split the text into sentences
-    const sentences = textToSummarize.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    // 1. Split the text into sentences - improved sentence splitting
+    const sentences = textToSummarize
+      .replace(/([.!?])\s*(?=[A-Z])/g, "$1|")
+      .split("|")
+      .filter(s => s.trim().length > 5);
     
     // 2. Calculate word frequency (a simple ranking metric)
     const wordFrequency = new Map<string, number>();
-    const stopWords = ["a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for", "with", "by"];
+    // Expanded stop words list for better filtering
+    const stopWords = [
+      "a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for", "with", "by", 
+      "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "do", 
+      "does", "did", "will", "would", "shall", "should", "may", "might", "must", "can", 
+      "could", "of", "from", "about", "that", "this", "these", "those", "it", "its", "it's"
+    ];
+    
+    // Log sentence count for debugging
+    console.log("Number of sentences found:", sentences.length);
     
     sentences.forEach(sentence => {
       const words = sentence.toLowerCase().split(/\s+/);
