@@ -121,8 +121,8 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
   });
 
   return (
-    <Card className="bg-white rounded-lg shadow-lg mb-10 border border-indigo-100 hover-lift">
-      <CardContent className="p-6">
+    <Card className="bg-white/70 backdrop-blur-sm rounded-lg shadow-xl mb-10 border border-indigo-200 hover-lift">
+      <CardContent className="p-8">
         <Form {...form}>
           <form onSubmit={handleFormSubmit} className="space-y-6">
             {/* Source Selector */}

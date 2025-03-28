@@ -11,9 +11,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <span className="material-icons text-indigo-300 text-2xl mr-2">description</span>
-              <h4 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-300">
-                YoutubeSummarizer
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 via-purple-500 to-pink-500 flex items-center justify-center mr-2 shadow-md border border-indigo-300">
+                <span className="material-icons text-white text-sm">description</span>
+              </div>
+              <h4 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 tracking-tight">
+                <span className="font-serif italic">Youtube</span><span className="font-sans">Summarizer</span>
               </h4>
             </div>
             <p className="text-indigo-200 text-sm">
