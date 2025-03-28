@@ -11,38 +11,38 @@ interface TutorialStep {
 
 const tutorialSteps: TutorialStep[] = [
   {
-    title: 'स्वागत है!',
-    description: 'SummarizerAI में आपका स्वागत है! यह त्वरित ट्यूटोरियल आपको मुख्य फीचर्स का उपयोग करना सिखाएगा।',
+    title: 'Welcome!',
+    description: 'Welcome to SummarizerAI! This quick tutorial will guide you through the main features of the application.',
     target: 'body',
     position: 'center'
   },
   {
-    title: 'सारांश स्रोत',
-    description: 'यहां आप YouTube विडियो या पाठ का चयन कर सकते हैं जिसका सारांश आप बनाना चाहते हैं।',
+    title: 'Source Selection',
+    description: 'Here you can choose between YouTube video or text as the source for your summary.',
     target: '.source-selector',
     position: 'bottom'
   },
   {
-    title: 'YouTube विडियो लिंक',
-    description: 'यहां YouTube विडियो का URL दर्ज करें, और हम उसके ट्रांसक्रिप्ट से सारांश तैयार करेंगे।',
+    title: 'YouTube Video Link',
+    description: 'Enter a YouTube video URL here, and we\'ll generate a summary from its transcript.',
     target: '.youtube-input',
     position: 'bottom'
   },
   {
-    title: 'टेक्स्ट इनपुट',
-    description: 'यहां अपना पाठ पेस्ट करें जिसका सारांश आप बनाना चाहते हैं।',
+    title: 'Text Input',
+    description: 'Paste or type your text here to generate a summary from it.',
     target: '.text-input',
     position: 'bottom'
   },
   {
-    title: 'सारांश लंबाई',
-    description: 'अपने सारांश की लंबाई चुनें - छोटा, मध्यम या लंबा।',
+    title: 'Summary Length',
+    description: 'Choose the length of your summary - short, medium, or long.',
     target: '.summary-length',
     position: 'top'
   },
   {
-    title: 'बस मिनटों में सारांश प्राप्त करें!',
-    description: 'बटन पर क्लिक करें और आपका सारांश तैयार हो जाएगा। सारांश को कॉपी और शेयर भी कर सकते हैं।',
+    title: 'Get Your Summary in Minutes!',
+    description: 'Click this button and your summary will be generated. You can also copy and share your summary.',
     target: '.generate-btn',
     position: 'top'
   }
@@ -234,7 +234,7 @@ const TutorialOverlay: React.FC = () => {
                 className="mr-2"
               >
                 <ChevronLeft className="mr-1" size={16} />
-                पिछला
+                Previous
               </Button>
             )}
           </div>
@@ -250,11 +250,11 @@ const TutorialOverlay: React.FC = () => {
           >
             {currentStep < tutorialSteps.length - 1 ? (
               <>
-                अगला
+                Next
                 <ChevronRight className="ml-1" size={16} />
               </>
             ) : (
-              'समाप्त करें'
+              'Finish'
             )}
           </Button>
         </div>

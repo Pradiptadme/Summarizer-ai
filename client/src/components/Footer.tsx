@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Facebook, Twitter, Globe, Mail } from 'lucide-react';
+import LogoSvg from './LogoSvg';
 
 const Footer: React.FC = () => {
   return (
@@ -11,8 +12,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 mr-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-md flex items-center justify-center">
-                <span className="material-icons text-white text-sm">summarize</span>
+              <div className="w-8 h-8 mr-2 logo-svg">
+                <LogoSvg />
               </div>
               <h4 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 tracking-tight">
                 SummarizerAI
