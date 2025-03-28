@@ -83,7 +83,7 @@ const InfoSection: React.FC = () => {
             </p>
             <div className="text-center">
               <p className="font-medium">Pradip Tadme</p>
-              <p className="text-primary">tadmepradip@example.com</p>
+              <p className="text-primary">tadmepradip@gmail.com</p>
             </div>
           </CardContent>
         </Card>

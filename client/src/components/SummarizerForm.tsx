@@ -121,7 +121,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
   });
 
   return (
-    <Card className="bg-white rounded-lg shadow-md mb-10">
+    <Card className="bg-white rounded-lg shadow-lg mb-10 border border-indigo-100 hover-lift">
       <CardContent className="p-6">
         <Form {...form}>
           <form onSubmit={handleFormSubmit} className="space-y-6">
@@ -131,7 +131,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                 type="button"
                 variant={inputMethod === 'youtube' ? 'default' : 'outline'}
                 onClick={() => handleInputMethodChange('youtube')}
-                className="flex items-center"
+                className={`flex items-center transition-all duration-300 ${inputMethod === 'youtube' ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-400 hover:to-red-500' : ''}`}
               >
                 <span className="material-icons mr-2">play_circle</span>
                 YouTube
@@ -140,7 +140,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                 type="button"
                 variant={inputMethod === 'text' ? 'default' : 'outline'}
                 onClick={() => handleInputMethodChange('text')}
-                className="flex items-center"
+                className={`flex items-center transition-all duration-300 ${inputMethod === 'text' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500' : ''}`}
               >
                 <span className="material-icons mr-2">text_fields</span>
                 Text
@@ -250,7 +250,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
             <div className="flex justify-center">
               <Button 
                 type="submit" 
-                className="inline-flex items-center px-6 py-3 font-medium shadow-sm"
+                className="inline-flex items-center px-6 py-3 font-medium shadow-md bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 animated-gradient hover-lift"
               >
                 <span className="material-icons mr-2">auto_awesome</span>
                 Generate Summary
