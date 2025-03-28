@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="0;url=/client/" />
+    <title>SummarizerAI - Get text summaries from YouTube videos and paragraphs</title>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+      .loading {
+        text-align: center;
+      }
+      .loading h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #7209b7, #3f37c9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(114, 9, 183, 0.2);
+        border-top-color: #7209b7;
+        border-radius: 50%;
+        margin: 1rem auto;
+        animation: spin 1s ease-in-out infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <h1>SummarizerAI</h1>
+      <div class="spinner"></div>
+      <p>Loading your content summarization tool...</p>
+      <p>If you are not redirected automatically, <a href="/client/">click here</a>.</p>
+    </div>
+  </body>
+</html>
