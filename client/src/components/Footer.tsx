@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Facebook, Twitter, Globe, Mail } from 'lucide-react';
-import Logo from './Logo';
+import logoPath from '../assets/logo.jpg';
 
 const Footer: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <Logo className="mr-2" />
+              <img src={logoPath} alt="Logo" className="w-8 h-8 rounded-full mr-2 border border-indigo-300" />
               <h4 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-300">
                 YoutubeSummarizer
               </h4>
