@@ -126,7 +126,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
         <Form {...form}>
           <form onSubmit={handleFormSubmit} className="space-y-6">
             {/* Source Selector */}
-            <div className="flex justify-center space-x-4 mb-6">
+            <div className="flex justify-center space-x-4 mb-6 source-selector">
               <Button
                 type="button"
                 variant={inputMethod === 'youtube' ? 'default' : 'outline'}
@@ -156,7 +156,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>YouTube Video URL</FormLabel>
-                      <div className="flex">
+                      <div className="flex youtube-input">
                         <div className="inline-flex items-center px-3 bg-gray-100 text-gray-500 border border-r-0 border-gray-300 rounded-l-md">
                           <span className="material-icons text-red-500">youtube_searched_for</span>
                         </div>
@@ -205,6 +205,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                         <Textarea
                           placeholder="Paste or type a paragraph to summarize..."
                           rows={6}
+                          className="text-input"
                           {...field}
                         />
                       </FormControl>
@@ -224,7 +225,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
                 control={form.control}
                 name="summaryLength"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="summary-length">
                     <FormLabel>Summary Length</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
@@ -250,7 +251,7 @@ const SummarizerForm: React.FC<SummarizerFormProps> = ({ onSubmit }) => {
             <div className="flex justify-center">
               <Button 
                 type="submit" 
-                className="inline-flex items-center px-6 py-3 font-medium shadow-md bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 animated-gradient hover-lift"
+                className="inline-flex items-center px-6 py-3 font-medium shadow-md bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 animated-gradient hover-lift generate-btn"
               >
                 <span className="material-icons mr-2">auto_awesome</span>
                 Generate Summary
