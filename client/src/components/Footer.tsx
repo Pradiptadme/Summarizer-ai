@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Facebook, Twitter, Globe, Mail } from 'lucide-react';
@@ -28,24 +27,45 @@ const Footer: React.FC = () => {
             <h5 className="font-semibold mb-4 text-purple-300">Quick Links</h5>
             <ul className="space-y-2 text-indigo-200">
               <li>
-                <Link href="/">
-                  <a className="hover:text-white transition-colors duration-300">Home</a>
-                </Link>
+                <button 
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  Home
+                </button>
               </li>
               <li>
-                <Link href="#how-it-works">
-                  <a className="hover:text-white transition-colors duration-300">How It Works</a>
-                </Link>
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('how-it-works');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  How It Works
+                </button>
               </li>
               <li>
-                <Link href="#features">
-                  <a className="hover:text-white transition-colors duration-300">Features</a>
-                </Link>
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('features');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  Features
+                </button>
               </li>
               <li>
-                <Link href="#contact">
-                  <a className="hover:text-white transition-colors duration-300">Contact</a>
-                </Link>
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('contact');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  Contact
+                </button>
               </li>
             </ul>
           </div>
@@ -54,19 +74,19 @@ const Footer: React.FC = () => {
             <h5 className="font-semibold mb-4 text-purple-300">Legal</h5>
             <ul className="space-y-2 text-indigo-200">
               <li>
-                <Link href="#">
-                  <a className="hover:text-white transition-colors duration-300">Terms of Service</a>
-                </Link>
+                <button className="hover:text-white transition-colors duration-300">
+                  Terms of Service
+                </button>
               </li>
               <li>
-                <Link href="#">
-                  <a className="hover:text-white transition-colors duration-300">Privacy Policy</a>
-                </Link>
+                <button className="hover:text-white transition-colors duration-300">
+                  Privacy Policy
+                </button>
               </li>
               <li>
-                <Link href="#">
-                  <a className="hover:text-white transition-colors duration-300">Cookie Policy</a>
-                </Link>
+                <button className="hover:text-white transition-colors duration-300">
+                  Cookie Policy
+                </button>
               </li>
             </ul>
           </div>
@@ -74,18 +94,18 @@ const Footer: React.FC = () => {
           <div>
             <h5 className="font-semibold mb-4 text-purple-300">Connect</h5>
             <div className="flex space-x-4 mb-4">
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              <button className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              </button>
+              <button className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Twitter size={20} />
-              </a>
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              </button>
+              <button className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Globe size={20} />
-              </a>
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              </button>
+              <button className="text-indigo-300 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Mail size={20} />
-              </a>
+              </button>
             </div>
             <p className="text-indigo-200 text-sm">
               Sign up for our newsletter for updates.
