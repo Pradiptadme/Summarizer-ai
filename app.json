@@ -1,0 +1,22 @@
+{
+  "name": "summarizerAI",
+  "description": "A powerful AI tool for summarizing YouTube videos and text content",
+  "repository": "https://github.com/pradiptadme/SummarizerAI",
+  "logo": "https://cdn.example.com/summarizerAI-logo.png",
+  "keywords": ["node", "express", "react", "ai", "summarizer"],
+  "env": {
+    "NODE_ENV": {
+      "description": "Environment for the application",
+      "value": "production"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "npm run start"
+  }
+}
