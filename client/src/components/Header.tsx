@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'wouter';
-import logoPath from '../assets/logo.jpg';
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +7,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <img src={logoPath} alt="Logo" className="w-10 h-10 rounded-full mr-3 border-2 border-white shadow-lg" />
+            <span className="material-icons text-white text-3xl mr-3">play_circle_filled</span>
             <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200">
               YoutubeSummarizer
             </h1>
