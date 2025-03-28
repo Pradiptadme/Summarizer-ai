@@ -80,4 +80,54 @@
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+  
+  /* Gen-Z Tech Style */
+  .neo-brutalism {
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.2s ease;
+  }
+  
+  .neo-brutalism:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000;
+  }
+  
+  /* Cyberpunk glowing effect */
+  .cyber-glow {
+    box-shadow: 0 0 10px rgba(123, 97, 255, 0.5),
+                0 0 20px rgba(123, 97, 255, 0.3),
+                0 0 30px rgba(123, 97, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Logo SVG Styles */
+  .logo-svg {
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+  }
+  
+  /* Y2K Gradient */
+  .y2k-gradient {
+    background: linear-gradient(
+      45deg, 
+      #ff3399, 
+      #ff33cc, 
+      #cc66ff, 
+      #9933ff, 
+      #6699ff, 
+      #33ccff, 
+      #33ffcc
+    );
+    background-size: 400% 400%;
+    animation: y2k-shift 15s ease infinite;
+  }
+  
+  @keyframes y2k-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
