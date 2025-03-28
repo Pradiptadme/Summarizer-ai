@@ -100,6 +100,7 @@ const Footer: React.FC = () => {
         
         <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
           <p>&copy; {new Date().getFullYear()} YoutubeSummarizer. All rights reserved.</p>
+          <p className="mt-2">Developed by <span className="text-primary font-semibold">Pradip Tadme</span></p>
         </div>
       </div>
     </footer>

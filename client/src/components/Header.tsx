@@ -17,8 +17,14 @@ const Header: React.FC = () => {
             <Link href="#how-it-works">
               <a className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium">How It Works</a>
             </Link>
+            <Link href="#features">
+              <a className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium">Features</a>
+            </Link>
             <Link href="#about">
               <a className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium">About</a>
+            </Link>
+            <Link href="#contact">
+              <a className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
             </Link>
           </nav>
           <div className="sm:hidden">
